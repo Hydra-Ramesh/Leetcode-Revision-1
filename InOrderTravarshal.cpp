@@ -15,17 +15,17 @@ struct TreeNode {
 
 class Solution {
 public:
-    void postorder(TreeNode* root, vector<int>& res) {
+    void inorder(TreeNode* root, vector<int>& res) {
         if (root == nullptr) return;
 
-        postorder(root->left, res);   // Left
-        postorder(root->right, res);  // Right
-        res.push_back(root->val);     // Root
+        inorder(root->left, res);   // Left
+        res.push_back(root->val);   // Root
+        inorder(root->right, res);  // Right
     }
 
-    vector<int> postorderTraversal(TreeNode* root) {
+    vector<int> inorderTraversal(TreeNode* root) {
         vector<int> res;
-        postorder(root, res);
+        inorder(root, res);
         return res;
     }
 };
@@ -46,9 +46,9 @@ int main() {
     root->left->right = new TreeNode(5);
 
     Solution sol;
-    vector<int> result = sol.postorderTraversal(root);
+    vector<int> result = sol.inorderTraversal(root);
 
-    cout << "Postorder Traversal: ";
+    cout << "Inorder Traversal: ";
     for (int val : result) {
         cout << val << " ";
     }
